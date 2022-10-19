@@ -1,0 +1,40 @@
+{% extends './partials/layout.html' %}
+
+{% block content %}
+<h1>Welcome To RTCG! Where you can turn your ART into Trading Cards.
+    <li> Create </li>
+    <li> Trade </li>
+    <li> Rumble </li>
+</h1>
+<p>Welcome {{ user['first_name'] }} {{ user['last_name'] }}.</p>
+
+<h2>Create Post</h2>
+<form action="{{ url_for('main.create_post') }}" method="POST" enctype="multipart/form-data" class="my-2">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title">
+  </div>
+  <div class="form-group">
+    <label for="file">Select a file:</label>
+    <input type="file" id="file" name="file" accept="image/gif, image/jpeg, image/png">
+  </div>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <input type="text" class="form-control" id="body" name="body">
+  </div>
+  <button type="submit" class="btn w-25 mt-4" style="background-color: #767d92;">Submit</button>
+</form>
+<hr>
+{% for post in posts %}
+<div class="card my-4">
+  <div class="card-header">
+    <a href="{{ url_for('main.post', id=post['id']) }}">
+      {{ post['title'] }}
+
+    
+    <img src="{{ url_for('main.upload', filename=file) }}" style="width: 64px">
+    </a>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}

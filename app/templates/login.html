@@ -1,0 +1,21 @@
+{% extends './partials/layout.html' %}
+
+{% block content %}
+<h1>Login</h1>
+<form action="{{ url_for('auth.login') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset id="username-field">
+        {{ form.user_name.label }}
+        {{ form.user_name(class="form-control", placeholder = "Enter your Username here") }}
+    </fieldset>
+    <div class="form-group">
+        <fieldset id="password-field">
+            {{ form.password.label }}
+            {{ form.password(class="form-control", placeholder = "Enter your password here") }}
+        </fieldset>
+    </div>
+    <p><small>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here.</a></small></p>
+
+    {{ form.submit(class = "btn btn-primary btn-block") }}
+</form>
+{% endblock content %}

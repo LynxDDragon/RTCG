@@ -1,0 +1,15 @@
+{% extends './partials/layout.html' %}
+
+{% block content %}
+<div class="card my-4">
+    <div class="card-header">
+        {{ post['title'] }}
+    </div>
+    <div class="card-body">
+        <img src="{{ url_for('main.upload', filename=file) }}" style="width: 64px">
+    </div>
+    <div class="card-body">
+        {{ post['body'] }}
+    </div>
+</div>
+{% endblock content %}
