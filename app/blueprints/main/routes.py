@@ -37,6 +37,16 @@ def contact():
 @app.route('/post', methods=['POST'])
 @login_required
 def create_post():
+
+    uploaded_file = request.files['file']
+    filename = secure_filename(uploaded_file.filename)
+    if filename != '':
+        file_ext = os.path.splitext(filename)[1]
+        if file_ext != validate_image(uploaded_file.stream):
+            abort(400)
+        basedir = os.path.abspath(os.path.dirname(__name__)) 
+        uploaded_file.save(os.path.join(basedir, 'uploads', filename))
+
     post_title = request.form['title']
     post_body = request.form['body']
     
