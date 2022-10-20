@@ -3,6 +3,7 @@
 {% block content %}
     <h1>User/Usuario: {{ user.username }}</h1>
     {% for post in posts %}
+    <hr>
     <div class="card my-4">
         <div class="card-header">
             {{ post.title }} 
@@ -11,5 +12,6 @@
             {{ post.body }}
         </div>
     </div>
+    <hr>
     {% endfor %}
 {% endblock %}
