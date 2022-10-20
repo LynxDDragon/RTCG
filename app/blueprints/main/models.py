@@ -28,6 +28,7 @@ def load_user(user_id):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250))
+    file = db.Column(db.String(1200))
     body = db.Column(db.String(1200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
