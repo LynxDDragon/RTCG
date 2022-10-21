@@ -27,13 +27,15 @@
 
 {% for post in posts %}
 <hr>
-<div class=" card my-4">
+<div class="card my-4" style="background-color: gray;">
   <div class="card-header d-flex flex-column align-items-center">
+    {{ post['title'] }}
+  </div>
+  <div class="card-body">
     <a href="{{ url_for('main.post', id=post['id']) }}">
-      {{ post['title'] }}
 
 
-      <img src="{{ url_for('main.upload', filename=file) }}" style="width: 64px">
+      <img src="{{ url_for('main.upload', filename=post['file']) }}" style="width: 300px ">
       {{ post['file]']}}
     </a>
 
@@ -42,11 +44,11 @@
         count = 0;
       button.onclick = function () {
         count += 1;
-        button.innerHTML = "Like: " + count;
+        button.innerHTML = "&hearts; " + count;
       };
     </script>
-
-    <button class="w-25" id="clickme">Like: 0</button>
+      <button class="w-25" id="clickme">&hearts; 0</button>
+      <button class="w-25" >Comment: 0</button>
 
   </div>
 </div>

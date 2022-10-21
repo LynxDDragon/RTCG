@@ -1,15 +1,28 @@
 {% extends './partials/layout.html' %}
 
 {% block content %}
-<div class="card my-4">
+<div class="card my-4" style="background-color: gray;">
     <div class="card-header">
         {{ post['title'] }}
     </div>
     <div class="card-body">
-        <img src="{{ url_for('main.upload', filename=file) }}" style="width: 64px">
+        <img src="{{ url_for('main.upload', filename=post['file']) }}" style="width: 500px">
+        {{ post['file]']}}
     </div>
     <div class="card-body">
         {{ post['body'] }}
     </div>
+</div>
+
+<div>
+    <h5>Comments</h5>
+
+    <form action="{{ url_for('main.create_post') }}" method="POST" enctype="multipart/form-data" class="my-2">
+        <div class="form-group">
+        <label for="body"></label>
+        <input type="text" class="form-control" id="body" name="body">
+        </div>
+        <button type="submit" class="btn w-25 mt-4" style="background-color: #767d92;">Submit</button>
+    </form>
 </div>
 {% endblock content %}

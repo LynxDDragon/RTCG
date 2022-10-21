@@ -1,4 +1,5 @@
 import imghdr
+from msilib.schema import Directory
 import os
 from config import Config
 from . import bp as app
@@ -50,7 +51,7 @@ def create_post():
     post_title = request.form['title']
     post_body = request.form['body']
     
-    new_post = Post(title=post_title, body=post_body, user_id=current_user.id)
+    new_post = Post(title=post_title, body=post_body, user_id=current_user.id, file=filename)
 
     db.session.add(new_post)
     db.session.commit()
@@ -77,10 +78,11 @@ def validate_image(stream):
 
 @app.route('/')
 def index():
-    files = os.listdir(app.config['UPLOAD_PATH'])
+    files = os.listdir('/uploads')
     return render_template('home.html', files=files)
 
 @app.route('/uploads/<filename>')
 def upload(filename):
-
-    return send_from_directory(app.config['UPLOAD_PATH'], filename)
+    basedir = os.path.abspath(os.path.dirname(__name__)) 
+    directory=os.path.join(basedir, 'uploads')
+    return send_from_directory(directory=directory, path=filename)
