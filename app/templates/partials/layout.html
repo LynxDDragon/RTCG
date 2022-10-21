@@ -11,17 +11,27 @@
         
 </head>
 
-<body class="text-center" style="color: #f4d47c;">
+<div class="bg"></div>
+<body class="text-center">
+
     <header class="mb-5">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">RTCG</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-expand-lg" style="background-color: #14213D;">
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+
+
+
+
+                <ul class="navbar-nav mr-auto"> 
+                    <li>
+                        <a class="navbar-brand" href="#">RTCG</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url_for('main.home') }}">Home<span class="sr-only">(current)</span></a>
                     </li>
@@ -32,17 +42,17 @@
                 <ul class="navbar-nav">
                     {% if not current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}" >Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                        <a class="nav-link" href="{{ url_for('auth.register') }}" >Register</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}" >Logout</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -50,12 +60,58 @@
         </nav>
     
     </header>
-<style>
-    body{
-        background-color: #081b3399;
+    
+    <style>
+        
+        body{
+            background-color: #000000;
+            color: #FCA311;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            
+        }
+        .bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url('https://media.istockphoto.com/photos/grey-and-orange-hexagons-modern-background-illustration-picture-id820779730?b=1&k=20&m=820779730&s=170667a&w=0&h=1Api6oZSR3YrgSIexFvFLiAyr_KQuc9LO4rPFP8FXV0=') repeat 0 0;
+    background-repeat: repeat;
+    animation: bg-animation 200s infinite;
+    opacity: .25;
+    visibility: visible;
+    z-index: -1;
     }
-</style>
-    <main class="container p-5 " style="background-color: #081b3399; border-radius: 25px;" >
+
+    @keyframes bg-animation {
+        0% { transform: translate(0,0) }
+        10% { transform: translate(-5%,-5%) }
+        20% { transform: translate(-10%,5%) }
+        30% { transform: translate(5%,-10%) }
+        40% { transform: translate(-5%,15%) }
+        50% { transform: translate(-10%,5%) }
+        60% { transform: translate(15%,0) }
+        70% { transform: translate(0,10%) }
+        80% { transform: translate(-15%,0) }
+        90% { transform: translate(10%,5%) }
+        100% { transform: translate(5%,0) }
+    }
+
+    nav a {
+        color: #FCA311;
+    }
+
+    nav li :hover{
+        background-color: #FCA311;
+        color: #000000;
+
+    }
+    </style>
+    
+    <main class="container p-5 " style="background-color: #14213D; border-radius: 25px;" >
+        
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -68,10 +124,6 @@
         <!-- THIS IS WHERE WE WILL PUT EACH PAGE'S CONTENT -->
         {% block content %}{% endblock content %}
     </main>
-
-    <!-- <footer>
-        This is a footer
-    </footer> -->
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 {% extends './partials/layout.html' %}
 
 {% block content %}
-<div class="card my-4" style="background-color: gray;">
+<div class="card my-4" style="background-color: #453F78;">
     <div class="card-header">
         {{ post['title'] }}
     </div>
@@ -11,6 +11,11 @@
     </div>
     <div class="card-body">
         {{ post['body'] }}
+    </div>
+
+    <div class="card-body">
+        <button class="w-25" id="clickme">&hearts; 0</button>
+        <button class="w-25" >Comment: 0</button>
     </div>
 </div>
 
